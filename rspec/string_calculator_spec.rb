@@ -22,4 +22,9 @@ describe StringCalculator do
   it 'handles different delimiter' do
     StringCalculator.add("//;\n1;2").should == 3
   end
+  it 'raises error and shows all negatives in the exception message if negatives are passed' do
+    lambda{ StringCalculator.add("-1,2,-3") }.should raise_error(RuntimeError, "negatives not allowed: -1, -3")
+    lambda{ StringCalculator.add("-1\n2,-3") }.should raise_error(RuntimeError, "negatives not allowed: -1, -3")
+    lambda{ StringCalculator.add("//;\n-1;2;-3") }.should raise_error(RuntimeError, "negatives not allowed: -1, -3")
+  end
 end

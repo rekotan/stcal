@@ -5,10 +5,14 @@ class StringCalculator
 
   class << self
     def add(numbers='')
-      numbers_to_array(numbers).inject(0) do |c, v|
+      negatives = []
+      result = numbers_to_array(numbers).inject(0) do |c, v|
 	raise "Invalid argument: #{numbers}" unless (Float(v) rescue false)
+	negatives << v if v.to_i < 0
 	c + v.to_i
       end
+      raise "negatives not allowed: #{negatives.join(', ')}" unless negatives.empty?
+      result
     end
     private
     def numbers_to_array(numbers)
