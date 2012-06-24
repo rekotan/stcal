@@ -19,4 +19,7 @@ describe StringCalculator do
   it 'takes strings with comma and new lines in a row and raise error' do
     lambda{ StringCalculator.add("1,\n") }.should raise_error
   end
+  it 'handles different delimiter' do
+    StringCalculator.add("//;\n1;2").should == 3
+  end
 end
