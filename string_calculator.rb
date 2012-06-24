@@ -4,17 +4,7 @@ class StringCalculator
 
   class << self
     def add(numbers='')
-      n = numbers.split(DELIMITER)
-      case n.size
-      when 0
-	return 0
-      when 1
-	n.first.to_i
-      when 2
-	n[0].to_i + n[1].to_i
-      else
-	raise "Invalid argument: #{numbers}"
-      end
+      numbers.split(DELIMITER).inject(0) { |c, v| c + v.to_i }
     end
   end
 end
